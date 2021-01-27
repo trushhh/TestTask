@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="match_parent"
+        android:contentDescription="priority"
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY"
+        local:MvxBind="Bitmap Priority,Converter=PriorityToBitmap"/>
+<!-- <View
+        android:layout_width="15dp"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        local:MvxBind="BackgroundColor Priority,Converter=PriorityToColor"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        local:MvxBind="Text Id"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        local:MvxBind="Text ProblemName"/>
+</LinearLayout>
