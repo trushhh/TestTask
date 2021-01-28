@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using TestTask.Core.Services;
 
 namespace TestTask.Core.ViewModels
@@ -23,16 +24,15 @@ namespace TestTask.Core.ViewModels
             _ticketService = ticketService;
             //Color = Color.FromArgb(255, 0, 0);
             Color = "#ff0000";
-            UpdateTickets();
         }
 
-        public override void ViewAppeared()
+        public override async void ViewAppeared()
         {
             base.ViewAppeared();
-            UpdateTickets();
+            await UpdateTickets();
         }
 
-        public async void UpdateTickets()
+        public async Task UpdateTickets()
         {
             Tickets = await _ticketService.GetTickets();
         }
@@ -55,15 +55,15 @@ namespace TestTask.Core.ViewModels
             {
                 _searchQuery = value;
                 if (_searchQuery.Length >= 3)
-                    FilterTickets(_searchQuery);
+                    FilterTickets(_searchQuery).Wait();
                 else 
-                    UpdateTickets();
+                    UpdateTickets().Wait();
                 RaisePropertyChanged(() => Tickets);
                 RaisePropertyChanged(() => SearchQuery);
             }
         }
 
-        private async void FilterTickets(string filterStr)
+        private async Task FilterTickets(string filterStr)
         {
             Tickets = await _ticketService.TicketsMatching(filterStr);
         }
@@ -71,8 +71,8 @@ namespace TestTask.Core.ViewModels
 
 
 
-        public IMvxCommand NavigateToAddTicketCommand => new MvxCommand(NavigateToAddTicket);
-        private async void NavigateToAddTicket()
+        public IMvxAsyncCommand NavigateToAddTicketCommand => new MvxAsyncCommand(NavigateToAddTicket);
+        private async Task NavigateToAddTicket()
         {
             await _navigationService.Navigate<AddTicketViewModel>();
         }

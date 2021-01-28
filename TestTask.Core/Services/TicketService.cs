@@ -17,7 +17,7 @@ namespace TestTask.Core.Services
             _connection.CreateTableAsync<Ticket>(CreateFlags.ImplicitPK | CreateFlags.AutoIncPK);
         }
 
-        public async void Delete(Ticket ticket)
+        public async Task Delete(Ticket ticket)
         {
             await _connection.DeleteAsync(ticket);
         }
@@ -40,7 +40,7 @@ namespace TestTask.Core.Services
                                     .ToListAsync();
         }
 
-        public async void Update(Ticket ticket)
+        public async Task Update(Ticket ticket)
         {
             await _connection.UpdateAsync(ticket);
         }

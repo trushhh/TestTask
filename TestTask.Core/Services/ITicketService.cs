@@ -10,7 +10,7 @@ namespace TestTask.Core.Services
         Task<List<Ticket>> TicketsMatching(string nameFilter);
         Task<List<Ticket>> GetTickets();
         Task<int> Insert(Ticket ticket);
-        void Update(Ticket ticket);
-        void Delete(Ticket ticket);
+        Task Update(Ticket ticket);
+        Task Delete(Ticket ticket);
     }
 }

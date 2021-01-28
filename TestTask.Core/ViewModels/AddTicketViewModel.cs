@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using TestTask.Core.Services;
 using static TestTask.Core.Services.Enums;
@@ -77,8 +78,8 @@ namespace TestTask.Core.ViewModels
         }
 
 
-        public IMvxCommand SaveCommand => new MvxCommand(DoSave);
-        private async void DoSave()
+        public IMvxAsyncCommand SaveCommand => new MvxAsyncCommand(DoSave);
+        private async Task DoSave()
         {
             if (!Validate())
                 return;
