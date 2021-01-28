@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Converters\PriorityToBitmapValueConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmCross" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Binding" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Core" Version="5.7.0" />
