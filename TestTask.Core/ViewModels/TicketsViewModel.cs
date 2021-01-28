@@ -53,11 +53,16 @@ namespace TestTask.Core.ViewModels
             get { return _searchQuery; }
             set
             {
+                Action filter = async () =>
+                {
+                    if (_searchQuery.Length >= 3)
+                        await FilterTickets(_searchQuery);
+                    else
+                        await UpdateTickets();
+                };
+
                 _searchQuery = value;
-                if (_searchQuery.Length >= 3)
-                    FilterTickets(_searchQuery).Wait();
-                else 
-                    UpdateTickets().Wait();
+                filter();
                 RaisePropertyChanged(() => Tickets);
                 RaisePropertyChanged(() => SearchQuery);
             }
